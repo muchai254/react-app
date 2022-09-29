@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 class Counter extends Component {
     
     state = { 
-        count: 0, 
+        value: this.props.value 
      }; 
 
      checkTags(){
@@ -19,25 +19,25 @@ class Counter extends Component {
 
     classStyles(){
         let styles = 'btn  m-2 btn-'
-        styles += (this.state.count===0) ? 'warning' : 'primary'
+        styles += (this.state.value===0) ? 'warning' : 'primary'
         return styles;
     } 
 
     handleIncrement = () => {
-        this.setState({count :this.state.count += 1});
+        this.setState({value :this.state.value += 1});
     }
 
     render() { 
         return (
-            <React.Fragment>
+            <div>
                 <span className={this.classStyles()}>{this.formatCount()}</span>
-                <button onClick={()=>{this.handleIncrement}}>Increment</button>
-            </React.Fragment>
+                <button onClick={this.handleIncrement}>Increment</button>
+            </div>
         );
     }
 
     formatCount(){
-        const {count} = this.state;
+        const {value: count} = this.state;
         return count === 0 ? 'Zero' : count;
     }
 }
